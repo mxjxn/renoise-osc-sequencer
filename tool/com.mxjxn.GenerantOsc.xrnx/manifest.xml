@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RenoiseScriptingTool doc_version="0">
+  <ApiVersion>6.2</ApiVersion>
+  <Id>com.mxjxn.GenerantOsc</Id>
+  <Version>2</Version>
+  <Author>mxjxn</Author>
+  <Name>Generant OSC</Name>
+  <Category>Networking</Category>
+  <Description>Sequence OSC in Renoise effect columns and automation lanes.</Description>
+  <Homepage>https://github.com/mxjxn/generant-renoise</Homepage>
+</RenoiseScriptingTool>
+

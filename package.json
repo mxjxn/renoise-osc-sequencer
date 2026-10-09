@@ -1,0 +1,8 @@
+{
+  "name": "generant-osc-renoise",
+  "private": true,
+  "scripts": {
+    "test": "node tests/check.mjs",
+    "package": "./scripts/package.sh"
+  }
+}

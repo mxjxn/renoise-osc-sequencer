@@ -1,0 +1,18 @@
+name: Release Renoise tool
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: ./scripts/package.sh
+      - run: gh release create "$GITHUB_REF_NAME" dist/Generant-Osc-Renoise.xrnx --generate-notes
+        env:
+          GH_TOKEN: ${{ github.token }}
