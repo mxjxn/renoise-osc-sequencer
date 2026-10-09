@@ -1,4 +1,4 @@
-# Generant OSC for Renoise
+# Renoise OSC Sequencer
 
 A Renoise tool for writing OSC events in pattern effect columns and exporting
 the arrangement as an OSC Score Bridge JSON score. Pairs tightly with [Generant](https://mxjxn.github.io/Generant) and [OSC Score Bridge](https://mxjxn.github.io/osc-score-bridge)
@@ -11,8 +11,8 @@ Run:
 ./scripts/package.sh
 ```
 
-Open the resulting `dist/Generant-Osc-Renoise.xrnx` in Renoise. The tool is
-available under **Tools → Generant OSC**.
+Open the resulting `dist/Renoise-Osc-Sequencer.xrnx` in Renoise. The tool is
+available under **Tools → OSC Sequencer**.
 
 ## Pattern events
 
@@ -33,4 +33,3 @@ sampled at the rate selected in the tool settings.
 - [OSC Score Bridge](https://github.com/mxjxn/osc-score-bridge) receives live OSC in Blender and bakes exported scores.
 
 Detailed instructions are in [the documentation site](docs/index.html).
-

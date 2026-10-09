@@ -1,4 +1,4 @@
-name: Release Renoise tool
+name: Release Renoise OSC Sequencer
 
 on:
   push:
@@ -13,6 +13,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: ./scripts/package.sh
-      - run: gh release create "$GITHUB_REF_NAME" dist/Generant-Osc-Renoise.xrnx --generate-notes
+      - run: gh release create "$GITHUB_REF_NAME" dist/Renoise-Osc-Sequencer.xrnx --generate-notes
         env:
           GH_TOKEN: ${{ github.token }}

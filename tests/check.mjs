@@ -6,12 +6,12 @@ const root=new URL('../',import.meta.url);
 const read=path=>readFile(new URL(path,root),'utf8');
 
 test('Renoise manifest targets API 6.2 and version 2',async()=>{
- const xml=await read('tool/com.mxjxn.GenerantOsc.xrnx/manifest.xml');
- assert.match(xml,/<ApiVersion>6\.2<\/ApiVersion>/);assert.match(xml,/<Version>2<\/Version>/);assert.match(xml,/<Id>com\.mxjxn\.GenerantOsc<\/Id>/);
+ const xml=await read('tool/com.mxjxn.RenoiseOscSequencer.xrnx/manifest.xml');
+ assert.match(xml,/<ApiVersion>6\.2<\/ApiVersion>/);assert.match(xml,/<Version>2<\/Version>/);assert.match(xml,/<Id>com\.mxjxn\.RenoiseOscSequencer<\/Id>/);assert.match(xml,/<Name>Renoise OSC Sequencer<\/Name>/);
 });
 
 test('tool implements tracker, automation, export, and song mappings',async()=>{
- const lua=await read('tool/com.mxjxn.GenerantOsc.xrnx/main.lua');
+ const lua=await read('tool/com.mxjxn.RenoiseOscSequencer.xrnx/main.lua');
  for(const phrase of ['^%[OSC%]','visible_effect_columns','pattern_track.automation','rack-osc-score','song().tool_data','/generant/v1/transport/tempo'])assert.ok(lua.includes(phrase),phrase);
 });
 

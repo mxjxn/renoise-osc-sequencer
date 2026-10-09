@@ -2,7 +2,7 @@ local tool = renoise.tool()
 local OscMessage = renoise.Osc.Message
 local UDP = renoise.Socket.PROTOCOL_UDP
 
-local prefs = renoise.Document.create("GenerantOscPreferences") {
+local prefs = renoise.Document.create("RenoiseOscSequencerPreferences") {
   host = "127.0.0.1",
   generant_port = 57142,
   blender_port = 57141,
@@ -64,7 +64,7 @@ local function default_mapping(code)
 end
 
 local function serialize_mappings()
-  local lines = {"GENERANT_OSC_2"}
+  local lines = {"RENOISE_OSC_SEQUENCER_1"}
   for _, mapping in ipairs(mappings) do
     local fields = {mapping.code, mapping.target, mapping.address, mapping.mode, mapping.min, mapping.max, mapping.release, mapping.fixed, mapping.enum}
     for index, value in ipairs(fields) do fields[index] = escape_field(value) end
@@ -81,9 +81,9 @@ end
 local function load_mappings()
   mappings = {}
   local data = renoise.song() and renoise.song().tool_data or ""
-  if type(data) ~= "string" or data:sub(1, 14) ~= "GENERANT_OSC_2" then selected_mapping = 1; return end
+  if type(data) ~= "string" or data:sub(1, 23) ~= "RENOISE_OSC_SEQUENCER_1" then selected_mapping = 1; return end
   for line in data:gmatch("[^\n]+") do
-    if line ~= "GENERANT_OSC_2" then
+    if line ~= "RENOISE_OSC_SEQUENCER_1" then
       local fields = {}
       for field in (line .. "\t"):gmatch("(.-)\t") do table.insert(fields, unescape_field(field)) end
       local code = (fields[1] or ""):upper()
@@ -139,7 +139,7 @@ end
 local function send_target(target, address, values)
   local port = target == "generant" and prefs.generant_port.value or prefs.blender_port.value
   local ok, err = pcall(send, port, address, values)
-  if not ok then renoise.app():show_warning("Generant OSC: " .. tostring(err)) end
+  if not ok then renoise.app():show_warning("OSC Sequencer: " .. tostring(err)) end
 end
 
 local function fixed_args(mapping)
@@ -492,14 +492,14 @@ show_panel = function()
   content:add_child(vb:space {height = 5})
   content:add_child(vb:row {spacing = 6, vb:button {text = "Create [OSC] track", notifier = create_osc_track}, vb:button {text = "Recompile", notifier = function() compile_song(); renoise.app():show_status(("Compiled %d OSC events"):format(#compiled.events)) end}, vb:button {text = "Export Blender score", notifier = export_score}})
   content:add_child(vb:text {text = "Automation: automate a device whose display name is [OSC ID] on an [OSC] track."})
-  dialog = renoise.app():show_custom_dialog("Generant OSC", content, function(window, key) if key.name == "esc" then window:close(); return nil end return key end)
+  dialog = renoise.app():show_custom_dialog("Renoise OSC Sequencer", content, function(window, key) if key.name == "esc" then window:close(); return nil end return key end)
 end
 
-tool:add_menu_entry {name = "Main Menu:Tools:Generant OSC:Mappings and settings", invoke = show_panel}
-tool:add_menu_entry {name = "Main Menu:Tools:Generant OSC:Create OSC track", invoke = create_osc_track}
-tool:add_menu_entry {name = "Main Menu:Tools:Generant OSC:Export Blender score", invoke = export_score}
-tool:add_keybinding {name = "Global:Tools:Generant OSC Mappings", invoke = show_panel}
-tool:add_keybinding {name = "Global:Tools:Export Generant OSC Score", invoke = export_score}
+tool:add_menu_entry {name = "Main Menu:Tools:OSC Sequencer:Mappings and settings", invoke = show_panel}
+tool:add_menu_entry {name = "Main Menu:Tools:OSC Sequencer:Create OSC track", invoke = create_osc_track}
+tool:add_menu_entry {name = "Main Menu:Tools:OSC Sequencer:Export Blender score", invoke = export_score}
+tool:add_keybinding {name = "Global:Tools:OSC Sequencer Mappings", invoke = show_panel}
+tool:add_keybinding {name = "Global:Tools:Export Renoise OSC Score", invoke = export_score}
 tool.app_new_document_observable:add_notifier(attach_song)
 tool.app_release_document_observable:add_notifier(detach_song)
 tool.app_will_save_document_observable:add_notifier(save_mappings)

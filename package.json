@@ -1,5 +1,5 @@
 {
-  "name": "generant-osc-renoise",
+  "name": "renoise-osc-sequencer",
   "private": true,
   "scripts": {
     "test": "node tests/check.mjs",

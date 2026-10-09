@@ -1,4 +1,4 @@
-name: Deploy Renoise OSC site
+name: Deploy Renoise OSC Sequencer site
 
 on:
   push:
@@ -32,4 +32,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-

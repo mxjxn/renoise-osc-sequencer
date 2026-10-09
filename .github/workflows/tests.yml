@@ -14,4 +14,4 @@ jobs:
           node-version: 22
       - run: npm test
       - run: ./scripts/package.sh
-      - run: unzip -t dist/Generant-Osc-Renoise.xrnx
+      - run: unzip -t dist/Renoise-Osc-Sequencer.xrnx
