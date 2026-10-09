@@ -1,7 +1,7 @@
 # Generant OSC for Renoise
 
 A Renoise tool for writing OSC events in pattern effect columns and exporting
-the arrangement as an OSC Score Bridge JSON score.
+the arrangement as an OSC Score Bridge JSON score. Pairs tightly with [Generant](https://mxjxn.github.io/Generant) and [OSC Score Bridge](https://mxjxn.github.io/osc-score-bridge)
 
 ## Install
 
